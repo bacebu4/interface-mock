@@ -1,0 +1,29 @@
+{
+  "name": "interface-mock",
+  "version": "1.0.0",
+  "description": "C#-like API for creating mock in TypeScript (Node.js)",
+  "main": "index.js",
+  "type": "module",
+  "keywords": [
+    "test",
+    "mock",
+    "interface"
+  ],
+  "files": [
+    "./index.js",
+    "./index.d.ts"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "author": "Vasilii Krasikov",
+  "license": "MIT",
+  "repository": "git+https://github.com/bacebu4/interface-mock.git",
+  "bugs": {
+    "url": "https://github.com/bacebu4/interface-mock/issues"
+  },
+  "homepage": "https://github.com/bacebu4/interface-mock#readme",
+  "devDependencies": {
+    "@types/node": "^22.10.1"
+  }
+}
