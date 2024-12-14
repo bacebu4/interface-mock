@@ -74,3 +74,44 @@ describe('SomeTest', () => {
   });
 });
 ```
+
+## Motivation
+
+Without the library, the code above would look like this:
+
+```ts
+import { mock } from 'node:test';
+import { assert } from 'node:assert';
+
+interface IBus {
+  send: (message: string) => Promise<void>;
+}
+
+describe('SomeTest', () => {
+  it('works', () => {
+    const busMock = { send: mock.fn(async () => ({})) };
+    const someService = new SomeService(busMock);
+
+    someService.execute();
+
+    const args = busMock.mock.calls.at(0)?.arguments;
+    assert.deepStrictEqual(args, ['Hello']);
+    assert.strictEqual(busMock.mock.calls.length, 1);
+  });
+});
+```
+
+Additionally, using the approach above complicates the process of checking mock calls when they are made multiple times:
+
+```ts
+busMock.send('1');
+busMock.send('2');
+```
+
+and then verifying that it was called once with specific arguments, which can be done more simply using the library:
+
+```ts
+busMock.verify(b => b.send('2'));
+```
+
+While this case is relatively rare, the main motivation for using this library is to improve the readability and simplicity of writing tests. By using the library, test code becomes more declarative and concise, allowing developers to focus on intent rather than boilerplate logic for call tracking.
